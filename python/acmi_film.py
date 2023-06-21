@@ -44,10 +44,7 @@ film_dataframe = pandas.DataFrame(columns=['work_id', 'work_label', 'director_id
 work_wikidata, director_wikidata = dict(), dict()
 
 api_path = pathlib.Path.cwd() / 'acmi-api' / 'app' / 'json' / 'works'
-
-# small sample of different data situations.
-
-api_files = [filename for filename in api_path.iterdir() if filename.suffix == '.json' and filename.stem in ['93732', '92778']]
+api_files = [filename for filename in api_path.iterdir() if filename.suffix == '.json']
 
 for api_file in tqdm.tqdm(api_files):
     with open(api_file, encoding='utf-8') as api_data:
@@ -87,4 +84,4 @@ film_dataframe = film_dataframe.loc[~film_dataframe.work_id.isin(wikidata_acmi_l
 
 dataframe_path = pathlib.Path.cwd() / 'csv' / 'acmi_film.csv'
 dataframe_path.parents[0].mkdir(exist_ok=True)
-film_dataframe.head(10).to_csv(dataframe_path, index=False)
+film_dataframe.sample(10).to_csv(dataframe_path, index=False)
