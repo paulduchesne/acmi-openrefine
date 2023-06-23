@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest 
     env: 
       CI_COMMIT_MESSAGE: daily csv generated
+    permissions:
+      contents: write  
     steps:
     - name: checkout repo
       uses: actions/checkout@v3
