@@ -1,7 +1,7 @@
 name: daily csv action
 on:
   schedule:
-    - cron: '* * * * *'
+    - cron: '0 * * * *'
 jobs:
   csv-generator:
     runs-on: ubuntu-latest 
